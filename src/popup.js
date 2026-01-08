@@ -4,8 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const bbTodoList = document.getElementById("todoList");
   const searchBox = document.getElementById("searchBox");
   const STORAGE_KEY = "bb-todos";
+  
   const undoToast = document.getElementById("undoToast");
   const undoBtn = document.getElementById("undoBtn");
+
+  const settingsBtn = document.getElementById("settingsBtn");
+  const settingsModal = document.getElementById("settingsModal");
+  const closeSettings = document.getElementById("closeSettings");
+  const themeSelect = document.getElementById("themeSelect");
 
   const STATUS = {
     waiting: { key: "W", label: "Waiting" },
@@ -205,6 +211,43 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   searchBox.oninput = render;
+
+  // 1. Ayarları Yükle
+  chrome.storage.local.get("theme", (result) => {
+    const savedTheme = result.theme || "system";
+    themeSelect.value = savedTheme;
+    applyTheme(savedTheme);
+  });
+
+  // 2. Çark butonuna basınca modalı aç
+  settingsBtn.onclick = () => {
+    settingsModal.style.display = "flex";
+  };
+
+  // 3. Kapat butonuna basınca modalı kapat
+  closeSettings.onclick = () => {
+    settingsModal.style.display = "none";
+  };
+
+  // 4. Seçim değişince kaydet ve uygula
+  themeSelect.onchange = () => {
+    const theme = themeSelect.value;
+    chrome.storage.local.set({ theme: theme });
+    applyTheme(theme);
+  };
+
+  function applyTheme(theme) {
+    document.body.classList.remove("light-theme", "dark-theme");
+    
+    if (theme === "light") {
+      document.body.classList.add("light-theme");
+    } else if (theme === "dark") {
+      document.body.classList.add("dark-theme");
+    } else {
+      // "system" seçiliyse tarayıcı ayarına bırak (CSS media query çalışır)
+      // Eğer class yoksa CSS'deki @media (prefers-color-scheme) devreye girer.
+    }
+  }
 
   /* ---------------- INIT ---------------- */
 
