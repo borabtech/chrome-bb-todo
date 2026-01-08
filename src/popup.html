@@ -47,19 +47,50 @@
   </div>
 
   <div id="settingsModal" class="modal" style="display:none;">
-  <div class="modal-content">
-    <h4>⚙️ Ayarlar</h4>
-    <div class="setting-item">
-      <span>Tema</span>
-      <select id="themeSelect">
-        <option value="system">Sistem Varsayılanı</option>
-        <option value="light">☀️ Açık</option>
-        <option value="dark">🌙 Koyu</option>
-      </select>
+    <div class="modal-content">
+      <h4>⚙️ Ayarlar</h4>
+      <div class="setting-item">
+        <span>Tema</span>
+        <select id="themeSelect">
+          <option value="system">Sistem Varsayılanı</option>
+          <option value="light">☀️ Açık</option>
+          <option value="dark">🌙 Koyu</option>
+        </select>
+      </div>
+      <button id="closeSettings">Kapat</button>
     </div>
-    <button id="closeSettings">Kapat</button>
   </div>
-</div>
+
+  <div id="detailPanel" class="detail-panel" style="display:none;">
+    <div class="detail-header">
+      <button id="closeDetail" class="icon-btn">⬅️</button>
+      <div class="header-actions">
+        <select id="detailStatusSelect" class="status-dropdown"></select>
+        <button id="saveDetail" class="save-btn">Kaydet</button>
+      </div>
+    </div>
+    
+    <div class="detail-body">
+      <label class="field-label">Başlık / Özet</label>
+      <div id="detailContentEditor" contenteditable="true" class="mini-editor"></div>
+
+      <hr>
+
+      <label class="field-label">Detaylı Açıklama</label>
+      <div class="wysiwyg-container">
+        <div class="detail-toolbar">
+          <button data-command="bold"><b>B</b></button>
+          <button data-command="italic"><i>I</i></button>
+          <button data-command="underline"><u>U</u></button>
+          <button data-command="insertUnorderedList">• List</button>
+          <button id="detailLinkBtn">🔗</button>
+          <button id="detailImgBtn">🖼️</button>
+          <button id="detailVideoBtn">🎥</button>
+        </div>
+        <div id="detailDescEditor" contenteditable="true" class="desc-editor" placeholder="Notlarınızı buraya yazın..."></div>
+      </div>
+    </div>
+  </div>
 
   <script src="popup.js"></script>
   <script src="toolbar.js"></script>

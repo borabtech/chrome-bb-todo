@@ -133,6 +133,11 @@ document.addEventListener("DOMContentLoaded", () => {
     .forEach(t => {
         const li = document.createElement("li");
         li.className = "todo-item";
+        li.onclick = (e) => {
+          if (!e.target.classList.contains('delete-btn')) {
+            openDetail(t);
+          }
+        };
 
         const badge = createStatusBadge(t);
 
@@ -300,6 +305,65 @@ importFile.onchange = (e) => {
   };
   reader.readAsText(file);
 };
+
+
+
+// 2. Detay Paneli Fonksiyonları
+function openDetail(todo) {
+  editingTodoId = todo.id;
+  const panel = document.getElementById("detailPanel");
+  
+  // Alanları doldur
+  document.getElementById("detailContentEditor").innerHTML = todo.content;
+  document.getElementById("detailDescEditor").innerHTML = todo.description || ""; 
+  
+  // Status dropdown doldurma
+  const statusSelect = document.getElementById("detailStatusSelect");
+  statusSelect.innerHTML = "";
+  Object.entries(STATUS).forEach(([key, meta]) => {
+    const opt = document.createElement("option");
+    opt.value = key;
+    opt.textContent = meta.label[0] + " - " + meta.label;
+    if (key === todo.status) opt.selected = true;
+    statusSelect.appendChild(opt);
+  });
+
+  panel.style.display = "flex";
+}
+
+// 3. Kaydetme İşlemi
+document.getElementById("saveDetail").onclick = () => {
+  const index = todos.findIndex(t => t.id === editingTodoId);
+  if (index !== -1) {
+    todos[index].content = document.getElementById("detailContentEditor").innerHTML;
+    todos[index].description = document.getElementById("detailDescEditor").innerHTML;
+    todos[index].status = document.getElementById("detailStatusSelect").value;
+    
+    saveTodos();
+    render();
+    document.getElementById("detailPanel").style.display = "none";
+  }
+};
+
+// 4. WYSIWYG Komutları (Toolbar Butonları için)
+document.querySelectorAll(".detail-toolbar button[data-command]").forEach(btn => {
+  btn.onclick = () => {
+    document.execCommand(btn.dataset.command, false, null);
+  };
+});
+
+// Resim Ekleme
+document.getElementById("detailImgBtn").onclick = () => {
+  const url = prompt("Resim URL'si girin:");
+  if (url) document.execCommand("insertImage", false, url);
+};
+
+// Kapatma
+document.getElementById("closeDetail").onclick = () => {
+  document.getElementById("detailPanel").style.display = "none";
+};
+
+
 
   /* ---------------- INIT ---------------- */
 
