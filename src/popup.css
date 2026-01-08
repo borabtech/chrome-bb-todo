@@ -364,3 +364,19 @@ body.dark-theme .tabs button,
 body.dark-theme .bb-button button { background-color: #3b3b3b; color: #ddd; }
 body.dark-theme .tabs button.active, 
 body.dark-theme .bb-button button.active { background-color: #007bff; color: #fff; }
+
+#exportBtn {
+  background-color: #28a745;
+  color: white;
+}
+
+#importBtn {
+  background-color: #17a2b8;
+  color: white;
+}
+
+#exportBtn:hover { background-color: #218838; }
+#importBtn:hover { background-color: #138496; }
+
+.dark-theme #exportBtn { background-color: #1e7e34; }
+.dark-theme #importBtn { background-color: #117a8b; }
