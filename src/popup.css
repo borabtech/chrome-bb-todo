@@ -1,0 +1,199 @@
+/* Genel gövde */
+body {
+  /* width: 360px; */
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  padding: 5px;
+  background-color: #f5f5f7;
+  color: #333;
+  min-width: 320px;
+}
+
+/* Başlık */
+h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Editor */
+#editor {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  min-height: 70px;
+  padding: 8px;
+  margin-bottom: 5px;
+  background-color: #fff;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+#editor:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Toolbar */
+#toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+#toolbar button {
+  margin: 2px;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+#toolbar button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Searchbox */
+#searchBox {
+  width: 97%;
+  padding: 5px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* Tabs */
+.tabs, .bb-button {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.bb-button button {
+  flex: 1;
+  margin-right: 5px;
+  background-color: #e0e0e0;
+  color: #333;
+}
+.bb-button button:last-child { margin-right: 0; }
+.bb-button button.active { background-color: #007bff; color: #fff; }
+
+/* Todo List */
+#todoList {
+  display: inline;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: calc(100vh - 320px);
+  overflow-y: auto;
+}
+
+/* Todo Item */
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 5px;
+  border-bottom: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 4px;
+  background-color: #fff;
+  overflow: visible;
+  position: relative;
+}
+
+.todo-item .todo-content {
+  flex: 1;
+}
+
+/* Status badge */
+.status-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.status-badge {
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  border-radius: 50%;
+  flex-shrink: 0;        /* 🔑 EN KRİTİK SATIR */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+  font-size: 13px;
+  user-select: none;
+  flex: none;
+}
+
+/* Colors */
+.status-W { background-color: #ffc107; } /* warning */
+.status-I { background-color: #007bff; } /* primary */
+.status-C { background-color: #28a745; } /* success */
+
+/* Dropdown */
+.status-menu {
+  position: fixed;          /* 🔑 UL'den kopar */
+  min-width: 140px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  z-index: 100000;          /* popup içindeki her şeyin üstünde */
+  overflow: hidden;
+}
+
+.status-menu div {
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.status-menu div:hover {
+  background: #f0f0f0;
+}
+
+/* Todo content */
+.todo-item div {
+  /* flex: 1; */
+  word-break: break-word;
+  font-size: 14px;
+}
+.done { opacity: 0.5; text-decoration: line-through; color: #888; }
+
+/* Trash button */
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Light/Dark mode */
+@media (prefers-color-scheme: dark) {
+  body { background-color: #1e1e1e; color: #ddd; }
+  #editor, .todo-item { background-color: #2b2b2b; color: #ddd; border-color: #444; }
+  #toolbar button { background-color: #3b3b3b; border-color: #555; color: #ddd; }
+  #toolbar button:hover { background-color: #505050; }
+  #searchBox { background-color: #3b3b3b; border-color: #555; color: #ddd; }
+  .tabs button, .bb-button button { background-color: #3b3b3b; color: #ddd; }
+  .tabs button.active, .bb-button button.active { background-color: #007bff; color: #fff; }
+  .status-menu {
+    background: #2b2b2b;
+    color: #ddd;
+  }
+  .status-menu div:hover {
+    background: #444;
+  }
+}
+
+@media (min-width: 480px) {
+  body {
+    padding: 20px;
+  }
+
+  .todo-item {
+    font-size: 15px;
+  }
+}

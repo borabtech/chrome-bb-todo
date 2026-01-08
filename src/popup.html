@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <h3>📝 Todo List</h3>
+
+  <div id="editor" contenteditable="true" placeholder="Yeni yapılacak iş..."></div>
+
+  <div id="toolbar">
+    <button data-command="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+    <button data-command="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+    <button data-command="underline" title="Underline (Ctrl+U)"><u>U</u></button>
+    <button id="textColorBtn" title="Text Color">🎨A</button>
+    <button id="bgColorBtn" title="Background Color">🖌</button>
+    <button data-command="insertUnorderedList" title="Bullet List">•▪•</button>
+    <button data-command="insertOrderedList" title="Numbered List">🔢</button>
+
+    <input type="color" id="textColorPicker" style="display:none" />
+    <input type="color" id="bgColorPicker" style="display:none" />
+  </div>
+
+  <div class="bb-button">
+    <button id="addBtn">Ekle</button>
+    <button id="exportBtn">Export</button>
+    <input type="file" id="importFile" style="display:none" />
+    <button id="importBtn">Import</button>
+  </div>
+
+  <input type="text" id="searchBox" placeholder="Ara..." />
+
+  <div class="tabs bb-button">
+    <button data-tab="active" class="active">Aktif</button>
+    <button data-tab="done">Arşiv</button>
+  </div>
+
+  <ul id="todoList"></ul>
+  <div id="undoToast" style="display:none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 15px; border-radius: 8px; font-size: 13px; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.3); align-items: center; gap: 10px;">
+    <span>Görev silindi.</span>
+    <button id="undoBtn" style="background: #007bff; border: none; color: white; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-weight: bold;">Geri Al</button>
+  </div>
+
+  <script src="popup.js"></script>
+  <script src="toolbar.js"></script>
+</body>
+</html>
