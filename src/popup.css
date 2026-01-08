@@ -177,14 +177,29 @@ h3 {
   #toolbar button { background-color: #3b3b3b; border-color: #555; color: #ddd; }
   #toolbar button:hover { background-color: #505050; }
   #searchBox { background-color: #3b3b3b; border-color: #555; color: #ddd; }
-  .tabs button, .bb-button button { background-color: #3b3b3b; color: #ddd; }
-  .tabs button.active, .bb-button button.active { background-color: #007bff; color: #fff; }
+  /* .tabs button, .bb-button button { background-color: #3b3b3b; color: #ddd; }
+  .tabs button.active, .bb-button button.active { background-color: #007bff; color: #fff; } */
   .status-menu {
     background: #2b2b2b;
     color: #ddd;
   }
   .status-menu div:hover {
     background: #444;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body { background-color: #ddd; color: #1e1e1e; }
+  #editor, .todo-item { background-color: #ddd; color: #2b2b2b; border-color: #ddd; }
+  #toolbar button { background-color: #ddd; border-color: #555; color: #ddd; }
+  #toolbar button:hover { background-color: #ddd; }
+  #searchBox { background-color: #ddd; border-color: #555; color: #ddd; }
+  .status-menu {
+    background: #ddd;
+    color: #2b2b2b;
+  }
+  .status-menu div:hover {
+    background: #ddd;
   }
 }
 
@@ -197,3 +212,155 @@ h3 {
     font-size: 15px;
   }
 }
+
+/* popup.css sonuna ekle */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Modal Stilleri */
+.modal {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(3px);    /* Arka planı hafifçe bulanıklaştır (Modern dokunuş) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  width: 260px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.modal-content h4 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+/* --- Şık Dropdown (Select) --- */
+.setting-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.setting-item span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+}
+
+#themeSelect {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  appearance: none; /* Varsayılan ok işaretini kaldır */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  transition: all 0.2s;
+}
+
+#themeSelect:hover {
+  border-color: #007bff;
+}
+
+/* --- Modern Butonlar --- */
+#closeSettings {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#closeSettings:hover {
+  background-color: #0056b3;
+}
+
+/* Karanlık modda modalın rengini de ayarla */
+.dark-theme .modal-content {
+  background: #2b2b2b;
+  color: #ddd;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.dark-theme .modal-content h4 { color: #eee; }
+.dark-theme .setting-item span { color: #aaa; }
+
+.dark-theme #themeSelect {
+  background-color: #3b3b3b;
+  border-color: #555;
+  color: #ddd;
+}
+
+.dark-theme #closeSettings {
+  background-color: #3b3b3b; /* Veya daha belirgin bir renk */
+  border: 1px solid #555;
+}
+
+.dark-theme #closeSettings:hover {
+  background-color: #444;
+}
+
+/* TEMA KONTROLLERİ */
+/* Mevcut CSS'indeki renkleri değişkenlere (variables) bağlamak en temizi olur, 
+   ancak hızlı çözüm için body'ye class ekleyebiliriz: */
+
+body.light-theme { background-color: #f5f5f7; color: #333; }
+body.dark-theme { background-color: #1e1e1e; color: #ddd; }
+
+body.light-theme #editor, 
+body.light-theme .todo-item { background-color: #ddd; color: #2b2b2b; border-color: #ddd; }
+body.dark-theme #editor, 
+body.dark-theme .todo-item { background-color: #2b2b2b; color: #ddd; border-color: #444; }
+
+body.light-theme #searchBox,
+body.light-theme #toolbar button { background-color: #ddd; color: #3b3b3b; border-color: #ddd; }
+body.dark-theme #searchBox,
+body.dark-theme #toolbar button { background-color: #3b3b3b; color: #ddd; border-color: #555; }
+
+body.light-theme .tabs button,
+body.light-theme .bb-button button { background-color: #ddd; color: #3b3b3b; border: 0px; }
+body.light-theme .tabs button.active, 
+body.light-theme .bb-button button.active { background-color: #007bff; color: #fff; border: 0px; }
+body.dark-theme .tabs button,
+body.dark-theme .bb-button button { background-color: #3b3b3b; color: #ddd; }
+body.dark-theme .tabs button.active, 
+body.dark-theme .bb-button button.active { background-color: #007bff; color: #fff; }
