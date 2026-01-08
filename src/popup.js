@@ -249,6 +249,58 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /* ---------------- EXPORT & IMPORT ---------------- */
+
+// 1. Export (Dışa Aktar)
+document.getElementById("exportBtn").onclick = () => {
+  const dataStr = JSON.stringify(todos, null, 2);
+  const dataBlob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(dataBlob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `bb-todo-export-${new Date().toISOString().slice(0,10)}.json`;
+  link.click();
+
+  URL.revokeObjectURL(url);
+};
+
+// 2. Import (İçe Aktar)
+const importBtn = document.getElementById("importBtn");
+const importFile = document.getElementById("importFile");
+
+importBtn.onclick = () => importFile.click(); // Gizli dosya seçiciyi tetikle
+
+importFile.onchange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    try {
+      const importedTodos = JSON.parse(event.target.result);
+      
+      if (Array.isArray(importedTodos)) {
+        // Mevcut verilerle birleştir veya üzerine yaz (üzerine yazmayı tercih ettik)
+        if (confirm("Mevcut yapılacaklar listeniz silinecek ve dosyadaki veriler yüklenecek. Onaylıyor musunuz?")) {
+          todos = importedTodos;
+          saveTodos();
+          render();
+          alert("Veriler başarıyla içe aktarıldı!");
+        }
+      } else {
+        alert("Geçersiz dosya formatı!");
+      }
+    } catch (err) {
+      alert("Dosya okunurken bir hata oluştu!");
+      console.error(err);
+    }
+    // Aynı dosyayı tekrar seçebilmek için input'u sıfırla
+    importFile.value = "";
+  };
+  reader.readAsText(file);
+};
+
   /* ---------------- INIT ---------------- */
 
   loadTodos();   // 🔑 popup açılır açılmaz güvenli yükleme
