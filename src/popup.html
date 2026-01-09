@@ -7,11 +7,11 @@
 <body>
 
   <div class="header-container">
-    <h3>📝 BB Todo List</h3>
+    <h3>📝 Extendo</h3>
     <button id="settingsBtn" class="icon-btn">⚙️</button>
   </div>
 
-  <div id="editor" contenteditable="true" placeholder="Yeni yapılacak iş..."></div>
+  <div id="editor" contenteditable="true" placeholder="New item..."></div>
 
   <div id="toolbar">
     <button data-command="bold" title="Bold (Ctrl+B)"><b>B</b></button>
@@ -27,7 +27,7 @@
   </div>
 
   <div class="bb-button">
-    <button id="addBtn">Ekle</button>
+    <button id="addBtn">Add</button>
     <button id="exportBtn">Export</button>
     <input type="file" id="importFile" style="display:none" />
     <button id="importBtn">Import</button>
@@ -36,28 +36,28 @@
   <input type="text" id="searchBox" placeholder="Ara..." />
 
   <div class="tabs bb-button">
-    <button data-tab="active" class="active">Aktif</button>
-    <button data-tab="done">Arşiv</button>
+    <button data-tab="active" class="active">Active</button>
+    <button data-tab="done">Archive</button>
   </div>
 
   <ul id="todoList"></ul>
   <div id="undoToast" style="display:none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 15px; border-radius: 8px; font-size: 13px; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.3); align-items: center; gap: 10px;">
-    <span>Görev silindi.</span>
-    <button id="undoBtn" style="background: #007bff; border: none; color: white; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-weight: bold;">Geri Al</button>
+    <span>Task deleted.</span>
+    <button id="undoBtn" style="background: #007bff; border: none; color: white; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-weight: bold;">Undo</button>
   </div>
 
   <div id="settingsModal" class="modal" style="display:none;">
     <div class="modal-content">
-      <h4>⚙️ Ayarlar</h4>
+      <h4>⚙️ Settings</h4>
       <div class="setting-item">
-        <span>Tema</span>
+        <span>Theme</span>
         <select id="themeSelect">
-          <option value="system">Sistem Varsayılanı</option>
-          <option value="light">☀️ Açık</option>
-          <option value="dark">🌙 Koyu</option>
+          <option value="system">System Default</option>
+          <option value="light">☀️ Light</option>
+          <option value="dark">🌙 Dark</option>
         </select>
       </div>
-      <button id="closeSettings">Kapat</button>
+      <button id="closeSettings">Close</button>
     </div>
   </div>
 
@@ -66,17 +66,17 @@
       <button id="closeDetail" class="icon-btn">⬅️</button>
       <div class="header-actions">
         <select id="detailStatusSelect" class="status-dropdown"></select>
-        <button id="saveDetail" class="save-btn">Kaydet</button>
+        <button id="saveDetail" class="save-btn">Update</button>
       </div>
     </div>
     
     <div class="detail-body">
-      <label class="field-label">Başlık / Özet</label>
+      <label class="field-label">Task title</label>
       <div id="detailContentEditor" contenteditable="true" class="mini-editor"></div>
 
       <hr>
 
-      <label class="field-label">Detaylı Açıklama</label>
+      <label class="field-label">Details</label>
       <div class="wysiwyg-container">
         <div class="detail-toolbar">
           <button data-command="bold"><b>B</b></button>
@@ -87,7 +87,7 @@
           <button id="detailImgBtn">🖼️</button>
           <button id="detailVideoBtn">🎥</button>
         </div>
-        <div id="detailDescEditor" contenteditable="true" class="desc-editor" placeholder="Notlarınızı buraya yazın..."></div>
+        <div id="detailDescEditor" contenteditable="true" class="desc-editor" placeholder="Write details here..."></div>
       </div>
     </div>
   </div>

@@ -1,4 +1,3 @@
-/* Genel gövde */
 body {
   /* width: 360px; */
   font-family: "Segoe UI", Tahoma, sans-serif;
@@ -8,7 +7,7 @@ body {
   min-width: 320px;
 }
 
-/* Başlık */
+/* Title */
 h3 {
   text-align: center;
   margin-bottom: 10px;
@@ -116,7 +115,7 @@ h3 {
   line-height: 22px;
   text-align: center;
   border-radius: 50%;
-  flex-shrink: 0;        /* 🔑 EN KRİTİK SATIR */
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -135,12 +134,12 @@ h3 {
 
 /* Dropdown */
 .status-menu {
-  position: fixed;          /* 🔑 UL'den kopar */
+  position: fixed;
   min-width: 140px;
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-  z-index: 100000;          /* popup içindeki her şeyin üstünde */
+  z-index: 100000;
   overflow: hidden;
 }
 
@@ -157,7 +156,6 @@ h3 {
 
 /* Todo content */
 .todo-item div {
-  /* flex: 1; */
   word-break: break-word;
   font-size: 14px;
 }
@@ -178,8 +176,6 @@ h3 {
   #toolbar button { background-color: #3b3b3b; border-color: #555; color: #ddd; }
   #toolbar button:hover { background-color: #505050; }
   #searchBox { background-color: #3b3b3b; border-color: #555; color: #ddd; }
-  /* .tabs button, .bb-button button { background-color: #3b3b3b; color: #ddd; }
-  .tabs button.active, .bb-button button.active { background-color: #007bff; color: #fff; } */
   .status-menu {
     background: #2b2b2b;
     color: #ddd;
@@ -214,7 +210,6 @@ h3 {
   }
 }
 
-/* popup.css sonuna ekle */
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -228,12 +223,11 @@ h3 {
   font-size: 18px;
 }
 
-/* Modal Stilleri */
 .modal {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(3px);    /* Arka planı hafifçe bulanıklaştır (Modern dokunuş) */
+  backdrop-filter: blur(3px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -262,7 +256,6 @@ h3 {
   color: #2c3e50;
 }
 
-/* --- Şık Dropdown (Select) --- */
 .setting-item {
   display: flex;
   flex-direction: column;
@@ -286,7 +279,7 @@ h3 {
   font-size: 14px;
   outline: none;
   cursor: pointer;
-  appearance: none; /* Varsayılan ok işaretini kaldır */
+  appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
@@ -298,7 +291,6 @@ h3 {
   border-color: #007bff;
 }
 
-/* --- Modern Butonlar --- */
 #closeSettings {
   width: 100%;
   padding: 10px;
@@ -315,7 +307,6 @@ h3 {
   background-color: #0056b3;
 }
 
-/* Karanlık modda modalın rengini de ayarla */
 .dark-theme .modal-content {
   background: #2b2b2b;
   color: #ddd;
@@ -332,7 +323,7 @@ h3 {
 }
 
 .dark-theme #closeSettings {
-  background-color: #3b3b3b; /* Veya daha belirgin bir renk */
+  background-color: #3b3b3b;
   border: 1px solid #555;
 }
 
@@ -340,9 +331,6 @@ h3 {
   background-color: #444;
 }
 
-/* TEMA KONTROLLERİ */
-/* Mevcut CSS'indeki renkleri değişkenlere (variables) bağlamak en temizi olur, 
-   ancak hızlı çözüm için body'ye class ekleyebiliriz: */
 
 body.light-theme { background-color: #f5f5f7; color: #333; }
 body.dark-theme { background-color: #1e1e1e; color: #ddd; }
@@ -383,7 +371,6 @@ body.dark-theme .bb-button button.active { background-color: #007bff; color: #ff
 .dark-theme #importBtn { background-color: #117a8b; }
 
 
-/* Detay Paneli Genel */
 .detail-panel {
   position: fixed;
   top: 0; right: 0; width: 100%; height: 100%;
@@ -408,7 +395,6 @@ body.dark-theme .bb-button button.active { background-color: #007bff; color: #ff
   color: #888; margin-bottom: 5px; display: block;
 }
 
-/* Editör Alanları */
 .mini-editor {
   border: 1px solid transparent; padding: 8px; font-size: 16px;
   font-weight: 600; min-height: 40px; margin-bottom: 15px; outline: none;
@@ -431,12 +417,10 @@ body.dark-theme .bb-button button.active { background-color: #007bff; color: #ff
   min-height: 200px; padding: 12px; outline: none; line-height: 1.6; font-size: 14px;
 }
 
-/* Status Dropdown */
 .status-dropdown {
   padding: 5px; border-radius: 6px; border: 1px solid #ddd; font-size: 12px; margin-right: 10px;
 }
 
-/* Karanlık Mod */
 .dark-theme .detail-panel { background: #1e1e1e; }
 .dark-theme .detail-header, .dark-theme .wysiwyg-container, .dark-theme .detail-toolbar {
   background: #2b2b2b; border-color: #444; color: #ddd;

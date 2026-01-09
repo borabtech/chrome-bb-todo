@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("click", closeMenu);
 
-  /* ---------------- ADD TODO (💥 FIX HERE) ---------------- */
+  /* ---------------- ADD TODO ---------------- */
 
   addBtn.onclick = () => {
     const html = editor.innerHTML.trim();
@@ -111,8 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     editor.innerHTML = "";
 
-    render();     // 🔑 HEMEN GÖRÜNTÜLE
-    saveTodos();  // 🔑 ARKADA KAYDET
+    render();
+    saveTodos();
   };
 
   /* ---------------- RENDER ---------------- */
@@ -133,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .forEach(t => {
         const li = document.createElement("li");
         li.className = "todo-item";
+
         li.onclick = (e) => {
           if (!e.target.classList.contains('delete-btn')) {
             openDetail(t);
@@ -151,21 +152,13 @@ document.addEventListener("DOMContentLoaded", () => {
         del.textContent = "🗑️";
         del.onclick = (e) => {
           e.stopPropagation();
-          
-          // const confirmed = confirm("Bu görevi silmek istediğinize emin misiniz?");
-          // if (confirmed) {
-            // Silinen öğeyi yedekle
-            lastDeletedTodo = { ...t };
-
-            todos = todos.filter(x => x.id !== t.id);
-            render();
-            saveTodos();
-
-            // Geri al bildirimini göster
-            showUndoToast();
-          }
-        //};
-
+          lastDeletedTodo = { ...t };
+          todos = todos.filter(x => x.id !== t.id);
+          render();
+          saveTodos();
+          showUndoToast();
+        }
+        
         li.appendChild(badge);
         li.appendChild(content);
         li.appendChild(del);
@@ -175,30 +168,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showUndoToast() {
-    // Eğer hali hazırda bir zamanlayıcı varsa temizle
     clearTimeout(undoTimeout);
-    
     undoToast.style.display = "flex";
 
-    // 4 saniye sonra bildirimi gizle ve yedeği temizle
     undoTimeout = setTimeout(() => {
       undoToast.style.display = "none";
       lastDeletedTodo = null;
     }, 5000);
   }
 
-  // Geri Al butonuna basıldığında
   undoBtn.onclick = () => {
     if (lastDeletedTodo) {
-      // Öğeyi geri ekle (olduğu sıraya veya en başa)
       todos.unshift(lastDeletedTodo);
       
-      // Temizlik
       lastDeletedTodo = null;
       undoToast.style.display = "none";
       clearTimeout(undoTimeout);
       
-      // Güncelle
       render();
       saveTodos();
     }
@@ -217,24 +203,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   searchBox.oninput = render;
 
-  // 1. Ayarları Yükle
   chrome.storage.local.get("theme", (result) => {
     const savedTheme = result.theme || "system";
     themeSelect.value = savedTheme;
     applyTheme(savedTheme);
   });
 
-  // 2. Çark butonuna basınca modalı aç
   settingsBtn.onclick = () => {
     settingsModal.style.display = "flex";
   };
 
-  // 3. Kapat butonuna basınca modalı kapat
   closeSettings.onclick = () => {
     settingsModal.style.display = "none";
   };
 
-  // 4. Seçim değişince kaydet ve uygula
   themeSelect.onchange = () => {
     const theme = themeSelect.value;
     chrome.storage.local.set({ theme: theme });
@@ -249,14 +231,11 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (theme === "dark") {
       document.body.classList.add("dark-theme");
     } else {
-      // "system" seçiliyse tarayıcı ayarına bırak (CSS media query çalışır)
-      // Eğer class yoksa CSS'deki @media (prefers-color-scheme) devreye girer.
     }
   }
 
   /* ---------------- EXPORT & IMPORT ---------------- */
 
-// 1. Export (Dışa Aktar)
 document.getElementById("exportBtn").onclick = () => {
   const dataStr = JSON.stringify(todos, null, 2);
   const dataBlob = new Blob([dataStr], { type: "application/json" });
@@ -264,17 +243,16 @@ document.getElementById("exportBtn").onclick = () => {
 
   const link = document.createElement("a");
   link.href = url;
-  link.download = `bb-todo-export-${new Date().toISOString().slice(0,10)}.json`;
+  link.download = `extendo-data-${new Date().toISOString().slice(0,10)}.json`;
   link.click();
 
   URL.revokeObjectURL(url);
 };
 
-// 2. Import (İçe Aktar)
 const importBtn = document.getElementById("importBtn");
 const importFile = document.getElementById("importFile");
 
-importBtn.onclick = () => importFile.click(); // Gizli dosya seçiciyi tetikle
+importBtn.onclick = () => importFile.click();
 
 importFile.onchange = (e) => {
   const file = e.target.files[0];
@@ -286,21 +264,19 @@ importFile.onchange = (e) => {
       const importedTodos = JSON.parse(event.target.result);
       
       if (Array.isArray(importedTodos)) {
-        // Mevcut verilerle birleştir veya üzerine yaz (üzerine yazmayı tercih ettik)
-        if (confirm("Mevcut yapılacaklar listeniz silinecek ve dosyadaki veriler yüklenecek. Onaylıyor musunuz?")) {
+        if (confirm("Existing items will be deleted. Are u sure?")) {
           todos = importedTodos;
           saveTodos();
           render();
-          alert("Veriler başarıyla içe aktarıldı!");
+          alert("Import successful!");
         }
       } else {
-        alert("Geçersiz dosya formatı!");
+        alert("Bad format!");
       }
     } catch (err) {
-      alert("Dosya okunurken bir hata oluştu!");
+      alert("An error occured while reading the data file!");
       console.error(err);
     }
-    // Aynı dosyayı tekrar seçebilmek için input'u sıfırla
     importFile.value = "";
   };
   reader.readAsText(file);
@@ -308,16 +284,13 @@ importFile.onchange = (e) => {
 
 
 
-// 2. Detay Paneli Fonksiyonları
 function openDetail(todo) {
   editingTodoId = todo.id;
   const panel = document.getElementById("detailPanel");
   
-  // Alanları doldur
   document.getElementById("detailContentEditor").innerHTML = todo.content;
   document.getElementById("detailDescEditor").innerHTML = todo.description || ""; 
   
-  // Status dropdown doldurma
   const statusSelect = document.getElementById("detailStatusSelect");
   statusSelect.innerHTML = "";
   Object.entries(STATUS).forEach(([key, meta]) => {
@@ -331,7 +304,6 @@ function openDetail(todo) {
   panel.style.display = "flex";
 }
 
-// 3. Kaydetme İşlemi
 document.getElementById("saveDetail").onclick = () => {
   const index = todos.findIndex(t => t.id === editingTodoId);
   if (index !== -1) {
@@ -345,20 +317,17 @@ document.getElementById("saveDetail").onclick = () => {
   }
 };
 
-// 4. WYSIWYG Komutları (Toolbar Butonları için)
 document.querySelectorAll(".detail-toolbar button[data-command]").forEach(btn => {
   btn.onclick = () => {
     document.execCommand(btn.dataset.command, false, null);
   };
 });
 
-// Resim Ekleme
 document.getElementById("detailImgBtn").onclick = () => {
-  const url = prompt("Resim URL'si girin:");
+  const url = prompt("Eneter an image URL:");
   if (url) document.execCommand("insertImage", false, url);
 };
 
-// Kapatma
 document.getElementById("closeDetail").onclick = () => {
   document.getElementById("detailPanel").style.display = "none";
 };
@@ -367,5 +336,5 @@ document.getElementById("closeDetail").onclick = () => {
 
   /* ---------------- INIT ---------------- */
 
-  loadTodos();   // 🔑 popup açılır açılmaz güvenli yükleme
+  loadTodos();
 });
