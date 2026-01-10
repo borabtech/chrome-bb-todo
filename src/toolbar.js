@@ -1,11 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // document.querySelectorAll("#toolbar button").forEach(btn => {
-    //     btn.addEventListener("click", () => {
-    //         const command = btn.dataset.command;
-    //         document.execCommand(command, false, null);
-    //     });
-    // });
-
     const editor = document.getElementById("editor");
 
     document.getElementById("textColorBtn").onclick = () => {
@@ -24,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.execCommand("hiliteColor", false, e.target.value);
     });
 
-    /* Diğer toolbar butonları (bold, italic vs) */
     document.querySelectorAll("#toolbar button[data-command]").forEach(btn => {
         btn.onclick = () => {
             document.execCommand(btn.dataset.command, false, null);
