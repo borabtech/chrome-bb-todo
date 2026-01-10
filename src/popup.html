@@ -7,37 +7,20 @@
 <body>
 
   <div class="header-container">
-    <h3>📝 Extendo</h3>
-    <button id="settingsBtn" class="icon-btn">⚙️</button>
+    <div class="brand">
+      <img src="ico/favicon-16x16.png" alt="logo" class="header-logo" /> <h3>Extendo</h3>
+    </div>
+    <div class="header-btns">
+      <button id="newItemBtn" class="icon-btn" title="Yeni Ekle">➕</button>
+      <button id="settingsBtn" class="icon-btn">⚙️</button>
+    </div>
   </div>
 
-  <div id="editor" contenteditable="true" placeholder="New item..."></div>
-
-  <div id="toolbar">
-    <button data-command="bold" title="Bold (Ctrl+B)"><b>B</b></button>
-    <button data-command="italic" title="Italic (Ctrl+I)"><i>I</i></button>
-    <button data-command="underline" title="Underline (Ctrl+U)"><u>U</u></button>
-    <button id="textColorBtn" title="Text Color">🎨A</button>
-    <button id="bgColorBtn" title="Background Color">🖌</button>
-    <button data-command="insertUnorderedList" title="Bullet List">•▪•</button>
-    <button data-command="insertOrderedList" title="Numbered List">🔢</button>
-
-    <input type="color" id="textColorPicker" style="display:none" />
-    <input type="color" id="bgColorPicker" style="display:none" />
-  </div>
-
-  <div class="bb-button">
-    <button id="addBtn">Add</button>
-    <button id="exportBtn">Export</button>
-    <input type="file" id="importFile" style="display:none" />
-    <button id="importBtn">Import</button>
-  </div>
-
-  <input type="text" id="searchBox" placeholder="Ara..." />
+  <input type="text" id="searchBox" placeholder="Type here to search an item..." />
 
   <div class="tabs bb-button">
-    <button data-tab="active" class="active">Active</button>
-    <button data-tab="done">Archive</button>
+    <button data-tab="active" class="active">Active Items</button>
+    <button data-tab="done">Archived Items</button>
   </div>
 
   <ul id="todoList"></ul>
@@ -57,6 +40,11 @@
           <option value="dark">🌙 Dark</option>
         </select>
       </div>
+
+      <button id="exportBtn">Export Todo Items</button>
+      <input type="file" id="importFile" style="display:none" />
+      <button id="importBtn">Import Todo Items</button>      
+
       <button id="closeSettings">Close</button>
     </div>
   </div>
@@ -85,9 +73,33 @@
           <button data-command="insertUnorderedList">• List</button>
           <button id="detailLinkBtn">🔗</button>
           <button id="detailImgBtn">🖼️</button>
-          <button id="detailVideoBtn">🎥</button>
         </div>
         <div id="detailDescEditor" contenteditable="true" class="desc-editor" placeholder="Write details here..."></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="addPanel" class="side-panel-overlay" style="display:none;">
+    <div class="panel-content">
+      <h4>New item</h4>
+      <div id="editor" contenteditable="true" placeholder="New item..."></div>
+
+      <div id="toolbar">
+        <button data-command="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+        <button data-command="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+        <button data-command="underline" title="Underline (Ctrl+U)"><u>U</u></button>
+        <button id="textColorBtn" title="Text Color">🎨A</button>
+        <button id="bgColorBtn" title="Background Color">🖌</button>
+        <button data-command="insertUnorderedList" title="Bullet List">•▪•</button>
+        <button data-command="insertOrderedList" title="Numbered List">🔢</button>
+
+        <input type="color" id="textColorPicker" style="display:none" />
+        <input type="color" id="bgColorPicker" style="display:none" />
+      </div>
+      
+      <div class="panel-actions">
+        <button id="cancelAdd" class="cancel-btn">Cancel</button>
+        <button id="addBtn" class="confirm-btn">Add</button>
       </div>
     </div>
   </div>

@@ -7,17 +7,19 @@
   "action": {
     "default_title": "Open Extendo Panel",
     "default_icon": {
-      "16": "assets/ico/favicon-16x16.png",
-      "32": "assets/ico/favicon-32x32.png",
-      "48": "assets/ico/favicon-48x48.png",
-      "128": "assets/ico/favicon-128x128.png"
+      "16": "ico/favicon-16x16.png",
+      "32": "ico/favicon-32x32.png",
+      "48": "ico/favicon-32x32.png",
+      "96": "ico/favicon-96x96.png",
+      "128": "ico/favicon-96x96.png"
     }
   },
     "icons": {
-      "16": "assets/ico/favicon-16x16.png",
-      "32": "assets/ico/favicon-32x32.png",
-      "48": "assets/ico/favicon-48x48.png",
-      "128": "assets/ico/favicon-128x128.png"
+      "16": "ico/favicon-16x16.png",
+      "32": "ico/favicon-32x32.png",
+      "48": "ico/favicon-32x32.png",
+      "96": "ico/favicon-96x96.png",
+      "128": "ico/favicon-96x96.png"
     },
   "side_panel": {
     "default_path": "popup.html"

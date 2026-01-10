@@ -1,18 +1,16 @@
 # 🚀 Extendo: Expand Your Productivity
 
-**Extendo**, modern web kullanıcısının odaklanma sorununu çözmek için geliştirilmiş bir tarayıcı eklentisidir. Basit bir yapılacaklar listesinin ötesine geçerek, yan panelde yaşayan bir "bilgi merkezi" sunar.
+**Extendo**, is a browser extension developed to solve the focus challenges of modern web users. Going beyond a simple to-do list, it provides a comprehensive "information hub" that lives right in your side panel.
 
-## 💡 Neden Extendo?
+## 💡 Why Extendo?
 
-Çoğu not uygulaması kullanıcıyı mevcut sekmesinden ayırır. Extendo ise Chrome'un yan panelini kullanarak mevcut iş akışınıza dahil olur. Bir makale okurken, video izlerken veya kod yazarken sayfayı terk etmeden zengin içerikli notlar almanızı sağlar.
+Most note-taking applications force users to navigate away from their current tab. Extendo integrates directly into your workflow by utilizing the Chrome Side Panel. Whether you are reading an article, watching a video, or writing code, it allows you to take rich-content notes without ever leaving the page.
 
-## 🛠 Business Logic & Temel Değerler
+## 🛠 Business Logic & Core Values
 
-1. **Local-First Güvenliği:** Kullanıcı verisi gizlidir. Hiçbir üyelik veya bulut senkronizasyonu zorunlu değildir. Veri tamamen kullanıcının tarayıcısındadır.
-2. **Hiyerarşik Detaylandırma:** Liste görünümünde karmaşayı önlemek için sadece başlıklar görünür. Her görev, içinde video, resim ve formatlı metin barındırabilen devasa bir "Detay Paneli"ne sahiptir.
-3. **Esnek Durum Yönetimi:** Görevler sadece "yapıldı/yapılmadı" değil; "Beklemede", "Devam Ediyor" ve "Tamamlandı" gibi profesyonel iş akışlarına uygun statülerle yönetilir.
-4. **Taşınabilirlik:** Kullanıcı verisine hapsolmaz. Tek tıkla tüm veriyi JSON olarak dışarı aktarabilir (Export) veya içeri alabilir (Import).
+1. **Local-First Security:** User data is private. No registration or cloud synchronization is required. All data remains entirely within the user's own browser.
+2. **Hierarchical Detailing:** To prevent clutter in the list view, only titles are displayed. Each task features a massive "Detail Panel" that can host videos, images, and rich formatted text.
+3. **Flexible Status Management:** Tasks are not limited to just "done/undone"; they are managed through professional workflow statuses such as "Waiting," "In Progress," and "Closed."
+4. **Portability:** Users are never locked into the platform. With a single click, all data can be exported as a JSON file or imported back into the extension.
 
 ---
-*Görsel buraya: [Ekran Görüntüsü - Ana Liste]*
-*Görsel buraya: [Ekran Görüntüsü - Zengin Metin Detayı]*

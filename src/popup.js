@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const editor = document.getElementById("editor");
   const addBtn = document.getElementById("addBtn");
+  const newItemBtn = document.getElementById("newItemBtn");
+  const addPanel = document.getElementById("addPanel");
+  const cancelAdd = document.getElementById("cancelAdd");
+
   const bbTodoList = document.getElementById("todoList");
   const searchBox = document.getElementById("searchBox");
   const STORAGE_KEY = "bb-todos";
@@ -113,7 +117,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     render();
     saveTodos();
+
+    closeAddPanel();
   };
+
+  newItemBtn.onclick = () => {
+    addPanel.style.display = "flex";
+    editor.focus();
+  };
+
+  const closeAddPanel = () => {
+    addPanel.style.display = "none";
+    editor.innerHTML = ""; // İçeriği temizle
+  };
+  cancelAdd.onclick = closeAddPanel;
+  const originalAddLogic = addBtn.onclick;
 
   /* ---------------- RENDER ---------------- */
 
